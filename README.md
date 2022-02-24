@@ -12,7 +12,6 @@ Multiusuario.
 Seguridad en la información.
 Sistema siempre disponible, desde cualquier lugar, 100% web.
 Multiplataforma.
-Dominio personalizado: http://tucolegio.vincoli.net.
 Horarios de curso y profesor.
 Editor y generador de Horarios.
 Exportación de horarios a formato Excel.
