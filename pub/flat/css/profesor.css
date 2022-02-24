@@ -1,0 +1,21 @@
+.r7{
+    border-top: 7px #ccc solid;
+    padding-top: 12px
+}
+#disponibilidad_especialidad div{
+    float: left;
+    margin-top: 14px
+}
+#disponibilidad_especialidad li{
+    float: left;
+    width: 33%;
+}
+#disponibilidad_especialidad input{
+    width: auto
+}
+#disponibilidad_especialidad span{
+    display: inline !important
+}
+#disponibilidad_especialidad label{
+    width: 100%
+}

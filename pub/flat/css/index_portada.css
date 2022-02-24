@@ -1,0 +1,55 @@
+#view{
+	color: #333
+}
+.datos li{
+	float: left;
+	width: 50%;
+}
+.datos p{
+	text-align: left;
+	font-size: 85%
+}
+.datos b{
+	margin-bottom: 7px;
+	display: block
+}
+.centrar{
+	width: 60%;
+	margin: auto;
+}
+.horario{
+	width: 100%;
+	margin-bottom: 14px
+}
+.horario li{
+	height: 12px
+}
+.pes{
+	float: left;
+	width: 32.3%;
+	margin: 14px 4px;
+	font-size: 93%
+}
+.pes span{
+	float: right
+}
+.pecu{
+	border: 2px solid #eee;
+	margin: 7px 0
+}
+.pecu dl{
+	margin: 3px 7px
+}
+.cu{
+	background: #eee;
+	padding: 7px;
+	margin-bottom: 21px;
+	font-size: 113%
+}
+.as{
+	font-weight: 600;
+	margin-top: 14px
+}
+.pr{
+	margin-left: 14px
+}

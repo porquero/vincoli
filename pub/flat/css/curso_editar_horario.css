@@ -1,0 +1,62 @@
+.horario li{
+	position: relative
+}
+.horario input[type=button]{
+	padding: 2px;
+	margin: 3px
+}
+.horario li{
+	height: 52px;
+	padding: 0
+}
+.x_plan{
+	position: absolute;
+	right: 0;
+	top:0
+}
+.asignatura{
+	width: 90%
+}
+.fm-1{
+	background: #fff3ea
+}
+.a_hover{
+	background: #B1DFFC
+}
+.p_hover{
+	background: #1abc9c
+}
+#resumen{
+	padding: 14px;
+	clear: both;
+	margin-bottom: 14px;
+	font-size: 85%
+}
+#tas{
+	margin-left: 22px
+}
+#resumen li{
+	float: left
+}
+#resumen li li{
+	list-style: circle;
+	list-style-position: inside;
+	margin-right: 7px
+}
+#resumen .as{
+	margin-top: 7px;
+	width: 25%
+}
+.horario span{
+	font-size: 100%
+}
+.profesores_para_bloque span:before{
+	content: "\f0c0";
+	cursor: pointer;
+	font-size: 131%
+}
+.asignaturas_para_bloque span:before{
+	content: "\f0ae";
+	cursor: pointer;
+	font-size: 131%
+}

@@ -1,0 +1,45 @@
+.horario{
+	float: left;
+	width: 99%;
+	margin-left: 1%;
+	font-size: 93%
+}
+.horario ul{
+	float: left;
+	width: 19.333%;
+	text-align: center;
+	border-top: solid 1px #f0f0f0;
+}
+.horario b{
+	font-size: 95%;
+	max-height: 40px;
+	overflow: hidden;
+	display: block;
+}
+.horario span{
+	font-size: 83%
+}
+.horario li{
+	height: 47px;
+	padding: 7px 3px;
+	border-right: solid 1px #f0f0f0;
+	border-bottom: solid 1px #f0f0f0;
+	overflow: hidden;
+}
+#bloques{
+	width: 20px;
+}
+#bloques li{
+	border-left: solid 1px #f0f0f0;
+	border-right: solid 1px #f0f0f0;
+	background: #eee
+}
+.hdia{
+	background: #009FBC !important;
+	height: 27px !important
+}
+.hdia h5{
+	margin-top: 4px;
+	color: #fff;
+	font-size: 108%
+}

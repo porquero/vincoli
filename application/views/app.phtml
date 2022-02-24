@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+			<title><?php echo @$title ?></title>
+			<?php
+			echo
+			link_tag('pub/css/reset.css')
+			. link_tag('pub/css/global.css')
+			. link_tag('css/main.css')
+			. @$head . @$_head;
+			?>
+			<script type="text/javascript">
+				url_base = '<?php echo base_url() ?>';
+			</script>
+	</head>
+	<body>
+		<div class="container" id="delegate">
+			<div class="header">
+				<?php @$_header ?>
+				<a href="<?php echo site_url() ?>"><img src="<?php echo base_url('img/cdda.png') ?>" alt="Colegio Diego de Almeyda" id="logo_colegio"/></a>
+				<h1><a href="http://www.playasoluciones.cl" id="logo_app" target=_new>Vincoli</a></h1>
+				<div class="clear"></div>
+				<div id="menu">
+					<ul>
+							<!--<li><a href="<?php echo site_url('horarios/bloque/listado') ?>"><span>Bloques</span></a></li>-->
+						<li><a href="<?php echo site_url('horarios/asignatura/listado') ?>"><span>Asignaturas</span></a></li>
+						<li><a href="<?php echo site_url('horarios/curso/listado') ?>"><span>Cursos</span></a></li>
+						<li><a href="<?php echo site_url('horarios/profesor/listado') ?>"><span>Profesores</span></a></li>
+						<li id="generar_horario"><a href="<?php echo site_url('horarios/horario/generar') ?>"><span><input type="button" value="Generar Horario" /></span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div id="view">
+				<h2><?php echo @$title ?></h2>
+				<?php echo @$_view ?>
+			</div>
+			<div class="clear"></div>
+			<div class="footer">
+				<?php echo @$_footer ?>
+				<p>proyecto desarrollado por <a href="http://playasoluciones.cl" target="_new">Playa</a></p>
+			</div>
+		</div>
+		<?php
+		echo
+		js_tag('pub/js/jquery-1.10.2.min.js')
+		. js_tag('pub/js/tshift/src/jquery.tshift.min.js')
+		. js_tag('js/main.js')
+		. @$footer;
+		?>
+	</body>
+</html>

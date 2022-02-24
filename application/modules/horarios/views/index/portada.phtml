@@ -1,0 +1,102 @@
+<h4>Totales</h4>
+<ul class="datos centrar">
+	<li><p>N° Cursos</p><b><?php echo $total_cursos ?></b></li>
+	<li><p>N° Profesores</p><b><?php echo $profesores ?></b></li>
+	<li><p>Total Hrs. Plan Estudio</p><b><?php echo $horas_planes_estudios ?></b></li>
+	<li><p>Total Hrs. Profesores</p><b><?php echo $horas_profesores ?></b></li>
+</ul>
+<h4>Cursos/Profesores disponibles por bloque</h4>
+<div class="centrar">
+	<div class="horario">
+		<ul id="bloques">
+			<li class="hdia"><h5>&nbsp;</h5></li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+		</ul>
+		<?php
+		$faltan_horas_profesores = false;
+		foreach ($nombre_dias as $dia => $num_dia) {
+			echo <<<PQR
+<ul>
+    <li class="hdia"><h5>{$dia}</h5></li>
+PQR;
+			foreach ($numero_bloques as $bloque) :
+				$cursos_por_bloque = $this->m_estadisticas->total_cursos_por_bloque($num_dia, $bloque);
+				$profesores = $this->m_estadisticas->total_horas_profesores($num_dia, $bloque);
+				$marcar = '';
+
+				if ($cursos_por_bloque > $profesores && $faltan_horas_profesores === FALSE) {
+					$marcar = ' class="rojo"';
+					$faltan_horas_profesores = TRUE;
+					msg('Faltan más horas de profesores para generar todos los horarios', 'msg_error');
+				}
+				echo <<<PQR
+<li>
+    <p{$marcar}>{$cursos_por_bloque}/{$profesores}</p>
+</li>
+PQR;
+			endforeach;
+			echo '</ul>';
+		}
+		?>
+	</div>
+</div>
+<h4>Detalle de planes de estudio/Profesores disponibles</h4>
+
+<?php
+$i = 1;
+$pes = array(1 => array('c' => '')
+		, 2 => array('c' => '')
+		, 3 => array('c' => '')
+);
+
+foreach ($cursos as $curso) :
+	$info_curso = Modules::run('horarios/curso/info', $curso->id);
+	ob_start();
+	?>
+	<dl class="pecu">
+		<dt class="cu"><?php echo $curso->glosa ?></dt>
+		<dd class="pe">
+			<?php
+			foreach ($info_curso['plan_estudio'] as $plan_estudio):
+				$marcar = '';
+
+				$profesores_asignatura = Modules::run('horarios/curso/profesores_para_asignatura', $curso->id, $plan_estudio->id_asignatura, FALSE);
+
+				if (count($profesores_asignatura) === 0) {
+					$marcar = ' rojo';
+					msg($curso->glosa . ' no tiene profesor para ' . $plan_estudio->glosa, 'msg_error');
+				}
+				?>
+				<dl>
+					<dt class="as<?php echo $marcar ?>"><?php echo substr($plan_estudio->glosa, 0, 50) ?></dt>
+					<?php
+					foreach ($profesores_asignatura as $k => $profesor):
+						?>
+						<dd class="pr"><?php echo $profesor ?></dd>
+					<?php endforeach; ?>
+				</dl>
+			<?php endforeach; ?>
+		</dd>
+	</dl>
+	<?php
+	$r = ob_get_clean();
+
+	$pes[$i]['c'] .= $r;
+	$i ++;
+
+	if ($i == 4) {
+		$i = 1;
+	}
+endforeach;
+?>
+<div class="pes"><?php echo $pes[1]['c'] ?></div>
+<div class="pes"><?php echo $pes[2]['c'] ?></div>
+<div class="pes"><?php echo $pes[3]['c'] ?></div>

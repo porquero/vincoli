@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Demo For Tshift</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="src/jquery.tshift.min.js"></script>
+<link href="http://www.jqueryscript.net/css/top.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="menu">
+<div class="w">
+<a href="http://www.jqueryscript.net/form/Use-Shift-Selection-For-Checkboxes-Tshift.html">Download</a> - <a href="http://www.jqueryscript.net/">Back To jQueryScript.Net</a></div>
+</div>
+<div id="checkboxes" style="margin-top:100px;">
+<fieldset>
+<legend>Select</legend>
+<input type="checkbox" name="number[]" value="1" /> 1<br />
+<input type="checkbox" name="number[]" value="2" /> 2<br />
+<input type="checkbox" name="number[]" value="3" /> 3<br />
+<input type="checkbox" name="number[]" value="4" /> 4<br />
+<input type="checkbox" name="number[]" value="5" /> 5<br />
+<input type="checkbox" name="number[]" value="6" /> 6<br />
+<input type="checkbox" name="number[]" value="7" /> 7<br />
+<input type="checkbox" name="number[]" value="8" /> 8<br />
+<input type="checkbox" name="number[]" value="9" /> 9<br />
+<input type="checkbox" name="number[]" value="10"/> 10<br />
+</fieldset>    
+</div>
+<script>
+$(function() {
+    $('#checkboxes').tshift();
+});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

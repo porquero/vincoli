@@ -1,0 +1,9 @@
+body{
+    font-size: 85%
+}
+.sidebar{
+    display: none
+}
+#view{
+    width: 100%
+}

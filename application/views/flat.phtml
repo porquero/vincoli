@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+			<title><?php echo @$title ?></title>
+			<?php
+			echo
+			link_tag('pub/css/reset.css')
+			. link_tag('https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css')
+			. link_tag('pub/css/global.css')
+			. link_tag('css/main.css')
+			. link_tag('css/640.css', 'stylesheet', 'text/css', '', 'screen and (max-width: 640px)')
+			. link_tag('css/1024.css', 'stylesheet', 'text/css', '', 'screen and (max-width: 1024px)')
+			. @$head . @$_head;
+			?>
+			<script type="text/javascript">
+				url_base = '<?php echo base_url() ?>';
+			</script>
+	</head>
+	<body>
+		<div class="container" id="delegate">
+			<div class="header">
+				<?php @$_header ?>
+				<div id="corporativo">
+					<ul>
+						<li></li>
+						<li id="logo_app"><h1><a href="http://www.playasoluciones.cl" target=_new>Vincoli</a></h1></li>
+					</ul>
+				</div>
+			</div>
+			<div class="sidebar">
+				<div id="empresa">
+					<a href="<?php echo site_url() ?>"><img src="<?php echo base_url('pub/img/vincoli-ico.png') ?>" alt="" id="logo_colegio"/></a>
+				</div>
+				<div id="menu">
+					<ul>
+					<!--<li><a href="<?php echo site_url('horarios/bloque/listado') ?>"><span>Bloques</span></a></li>-->
+						<li><a href="<?php echo site_url('horarios/index/portada') ?>" class="resumen"><span>Resumen</span></a></li>
+						<li><a href="<?php echo site_url('horarios/asignatura/listado') ?>" class="asignaturas"><span>Asignaturas</span></a></li>
+						<li><a href="<?php echo site_url('horarios/curso/listado') ?>"><span>Cursos</span></a></li>
+						<li><a href="<?php echo site_url('horarios/profesor/listado') ?>"><span>Profesores</span></a></li>
+						<li>
+							<b><a href="javascript:;">Horario</a></b>
+							<ul>
+								<li><a href="<?php echo site_url('horarios/horario/cursos') ?>">De cursos</a></li>
+								<li><a href="<?php echo site_url('horarios/horario/descargar_profesores') ?>">Descargar de Profesores</a></li>
+								<li><a href="<?php echo site_url('horarios/horario/descargar_cursos') ?>">Descargar de Cursos</a></li>
+								<!--<li id="generar_horario"><a href="<?php echo site_url('horarios/horario/generar') ?>"><span><input type="button" value="Generar Horario" /></span></a></li>-->
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="view">
+				<h2><?php echo @$title ?></h2>
+				<p id="msg" class="<?php echo $this->session->flashdata('msg_tipo'); ?>"><?php echo $this->session->flashdata('msg'); ?></p>
+				<?php echo @$_view ?>
+				<div class="clear"></div>
+				<div class="footer">
+					<?php echo @$_footer ?>
+					<p>Desarrollado por <a href="http://playasoluciones.cl" target="_new">Playa</a></p>
+				</div>
+			</div>
+		</div>
+		<?php
+		echo
+		js_tag('pub/js/jquery-1.10.2.min.js')
+		. js_tag('pub/js/tshift/src/jquery.tshift.js')
+		. js_tag('js/main.js', 'jsmain')
+		. @$footer;
+		?>
+	</body>
+</html>

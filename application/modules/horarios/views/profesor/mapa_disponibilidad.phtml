@@ -1,0 +1,49 @@
+<h4><?php echo $info->nombres . ' ' . $info->apellidos ?></h4>
+<div class="horario">
+	<ul id="bloques">
+		<li class="hdia"><h5>&nbsp;</h5></li>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+	</ul>
+	<?php
+	$d = 0;
+	foreach ($nombre_dias as $dia) {
+		$d ++;
+		echo <<<PQR
+<ul>
+    <li class="hdia"><h5>{$dia}</h5></li>
+PQR;
+		foreach ($numero_bloques as $bloque) {
+			if ($this->router->fetch_method() == 'horario' && isset($bloques_disponibles[$d][$bloque])) {
+				if (is_null($bloques_disponibles[$d][$bloque]->asignatura) === TRUE) {
+					$disponibilidad = '✔';
+				}
+				else {
+					$datos = <<<PQR
+<p><b>{$bloques_disponibles[$d][$bloque]->curso}</b></p>
+<span>{$bloques_disponibles[$d][$bloque]->asignatura}</span>
+PQR;
+					$disponibilidad = isset($bloques_disponibles[$d][$bloque]) ? $datos : '<p>-</p>';
+				}
+			}
+			else {
+				$disponibilidad = isset($bloques_disponibles[$d][$bloque]) ? '<p>✔</p>' : '<p>-</p>';
+			}
+			echo <<<PQR
+<li>
+    {$disponibilidad}
+</li>
+PQR;
+		}
+		echo '</ul>';
+	}
+	?>
+	<div class="clear">✔: Bloque disponible.</div>
+</div>

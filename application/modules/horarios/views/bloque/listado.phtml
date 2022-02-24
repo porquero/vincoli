@@ -1,0 +1,42 @@
+<form action="<?php echo site_url('horarios/bloque/crud') ?>" id="fcrud" method="post">
+	<div id="herramientas">
+		<input type="button" value="Agregar" class="crud" id="agregar" />
+		<input type="button" value="Modificar" class="crud" id="modificar" />
+		<!--<input type="submit" value="Eliminar" id="eliminar" name="submit" />-->
+		<span id="ajax-load" class="hidden"><img src="/pub/img/ajax-loader.gif" alt="Cargando" /> cargando...</span>
+	</div>
+	<div class="msg"></div>
+	<div id="crud">
+		<div id="bgt">
+			<h3></h3>
+			<div class="x_form" id="x" title="cancelar">x</div>
+			<label><span>Rango</span><input type="text" name="rango" placeholder="Rango" id="rango" required="required" /></label>
+			<label><span>Comentario</span><textarea name="comentario" placeholder="Comentario" id="comentario"></textarea></label>
+			<div class="clear"></div>
+			<input type="button" value="cancelar" class="x_form" />
+			<input type="submit" name="submit" value="Enviar" id="enviar" />
+			<div class="clear"></div>
+		</div>
+	</div>
+	<table class="listado">
+		<thead>
+			<tr>
+				<th style="width: 13px">&nbsp;</th>
+				<th>Rango</th>
+				<th>Comentario</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($listado as $bloque): ?>
+				<tr>
+					<td>
+						<input type="radio" name="id" data-row='<?php echo json_encode($bloque) ?>'
+									 value="<?php echo $bloque->id ?>" />
+					</td>
+					<td><?php echo $bloque->rango ?></td>
+					<td><?php echo $bloque->comentario ?></td>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+</form>

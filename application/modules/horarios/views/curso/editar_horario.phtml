@@ -1,0 +1,91 @@
+<div id="herramientas">
+	<input type="button" value="Restablecer horario" id="restablecer_horario" data-id_curso="<?php echo $id_curso ?>" />
+	<input type="button" value="Vaciar horario" id="vaciar_horario" data-id_curso="<?php echo $id_curso ?>" />
+	<a href="<?php echo site_url('horarios/horario/generar_curso') . '/' . $id_curso ?>"><input type="button" value="Generar horario" /></a>
+</div>
+<div id="resumen">
+	<h3>Resumen <a href="">(actualizar)</a></h3>
+	<ul id="tas">
+		<?php
+		if (count($plan_estudio) === 0) {
+			echo 'El horario está completo';
+		}
+
+		foreach ($plan_estudio as $asignatura) {
+			$marcar = '';
+//			Plogger::var_dump(Modules::run('horarios/curso/profesores_disponibles_asignatura', $id_curso, $asignatura->id_asignatura, $asignatura->horas));
+			$profesores_asignatura = Modules::run('horarios/curso/profesores_para_asignatura', $id_curso, $asignatura->id_asignatura, FALSE);
+
+			if (count($profesores_asignatura) === 0) {
+				$marcar = ' rojo';
+				msg('Ningún profesor para ' . $asignatura->glosa, 'msg_error');
+			}
+
+			echo <<<PQR
+<li class="as"><b>{$asignatura->glosa}</b>: faltan {$asignatura->horas} horas.<ul>
+PQR;
+
+			foreach ($profesores_asignatura as $k => $profesor) {
+				$link = site_url('/horarios/profesor/horario/' . $k);
+				echo <<<PQR
+<li data-profesor="{$k}"><a href="{$link}">{$profesor}</a></li>
+PQR;
+			}
+
+			echo '</ul></li>';
+		}
+		?>
+	</ul>
+	<div class="clear"></div>
+</div>
+<div class="horario" id="h_cnt">
+	<ul id="bloques">
+		<li class="hdia"><h5>&nbsp;</h5></li>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+	</ul>
+	<?php
+	foreach ($nombre_dias as $id_dia => $dia) {
+		echo <<<PQR
+<ul>
+    <li class="hdia"><h5>{$dia}</h5></li>
+PQR;
+		foreach ($numero_bloques as $bloque) {
+			$fm = $id_asignatura = 0;
+			$id_profesor = '';
+
+			if (isset($asignaturas[$dia][$bloque]['asignatura'])) {
+//				Plogger::var_dump($asignaturas);
+				$horario_profesor = site_url('horarios/profesor/horario/' . $asignaturas[$dia][$bloque]['id_profesor']);
+				$asignatura = <<<PQR
+<p><b>{$asignaturas[$dia][$bloque]['asignatura']}</b></p>
+<a href="{$horario_profesor}">{$asignaturas[$dia][$bloque]['profesor']}</a>
+<input type="button" value="X" class="x_plan" title="Eliminar Asignatura" />
+PQR;
+				$fm = $asignaturas[$dia][$bloque]['fijado_manualmente'];
+				$id_profesor = $asignaturas[$dia][$bloque]['id_profesor'];
+				$id_asignatura = $asignaturas[$dia][$bloque]['id_asignatura'];
+			}
+			else {
+//				Plogger::var_dump(Modules::run('horarios/curso/bloques_con_profesores_disponibles', $id_curso, $id_dia, $bloque));
+				$asignatura = $profesor = <<<PQR
+<button class="asignaturas_para_bloque" title="Establecer asignatura"><span></span></button>
+<button class="profesores_para_bloque" title="Profesores disponibles"><span></span></button>
+PQR;
+			}
+
+			echo <<<PQR
+<li data-bloque="{$id_curso}/{$id_dia}/{$bloque}" data-profesor="{$id_profesor}" data-asignatura="{$id_asignatura}" class="fm-{$fm}">{$asignatura}</li>
+PQR;
+		}
+		echo '</ul>';
+	}
+	?>
+</div>

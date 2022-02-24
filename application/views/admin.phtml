@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title><?php echo @$title ?></title>
+		<?php
+		echo
+		link_tag('pub/css/reset.css')
+		. link_tag('pub/css/global.css')
+		. link_tag('css/main.css')
+		. @$head . @$_head;
+		?>
+	</head>
+	<body>
+		<div class="container">
+			<div class="header"><?php @$_header ?></div>
+			<div class="clear"></div>
+			<div class="content" id="delegate">
+				<?php
+				echo @$_breadcrumb;
+				if (isset($message)) {
+					echo '<div id="msg-sys"><div>' . $message . '</div></div>';
+				}
+				echo '<h1>' . @$title . '</h1>';
+				echo @$_view;
+				?>
+				<div class="clear"></div>
+			</div>
+			<div class="sidebar"><?php echo @$_sidebar ?></div>
+			<div class="clear"></div>
+			<div class="footer"><?php echo @$_footer ?></div>
+		</div>
+		<script type="text/javascript">
+			url_base = '<?php echo base_url() ?>';
+		</script>
+		<?php
+		echo
+		js_tag('pub/js/jquery-1.10.2.min.js')
+		. js_tag('js/main.js')
+		. @$footer;
+		?>
+	</body>
+</html>

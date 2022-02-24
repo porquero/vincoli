@@ -1,0 +1,117 @@
+<form action="<?php echo site_url('horarios/curso/crud') ?>" id="fcrud" method="post">
+	<div id="herramientas">
+		<button value="Agregar" type="button" id="agregar"><span> Agregar</span></button>
+		<button value="Modificar" type="button" id="modificar"><span> Modificar</span></button>
+		<button value="Editar Horario" id="editar_horario"><span> Editar Horario</span></button>
+		<button value="Eliminar" type="submit" id="eliminar" name="submit"><span> Eliminar</span></button>
+		<span id="ajax-load" class="hidden"><img src="/pub/img/ajax-loader.gif" alt="Cargando" /> cargando...</span>
+	</div>
+	<div class="msg"></div>
+	<div id="crud">
+		<div id="bgt">
+			<a class="x_form" id="x" title="cancelar"><span></span></a>
+			<h3></h3>
+			<div id="crud-form">
+				<h4>Datos del curso</h4>
+				<label><span>Curso</span><input type="text" name="glosa" placeholder="Curso" id="glosa" required="required" /></label>
+				<label><span>Profesor Jefe</span><?php echo form_dropdown('id_profesor', $profesores, '', 'id="id_profesor"') ?></label>
+				<label><span>Comentario</span><textarea name="comentario" placeholder="Comentario" id="comentario"></textarea></label>
+				<h4>Plan de estudios</h4>
+				<div id="plan_estudio">
+					<button id="agregar_plan"><span> Agregar Asignatura</span></button>
+					<div>
+						<label id="lasig"><span>Asignaturas</span></label>
+						<label><span>Horas</span></label>
+						<label><span>Asignar profesor (opcional)</span></label>
+					</div>
+					<div class="plan">
+						<label><?php echo form_dropdown('id_asignatura[]', $asignaturas, '', 'class="asignatura" required="required"') ?></label>
+						<label><input type="number" name="horas[]" placeholder="Horas" min="0" class="horas" value="0" /></label>
+						<label class="profesor_asignatura">
+							<select name="id_profesor_asignatura[]" class="select_parche">
+								<option value="">-- Sin asignar --</option>
+							</select>
+							<input type="button" value="Asignar profesor" class="asignar_profesor_asignatura" />
+						</label>
+						<a class="x_plan" title="Eliminar Asignatura"><span></span></a>
+					</div>
+				</div>
+				<h4>Bloques activos</h4>
+				<div class="sec-form">
+					<div id="disponibilidad">
+						<ul id="bloques-n">
+							<li><b>&nbsp;</b></li>
+							<li><label class="r1">1</label></li>
+							<li><label class="r2">2</label></li>
+							<li><label class="r3">3</label></li>
+							<li><label class="r4">4</label></li>
+							<li><label class="r5">5</label></li>
+							<li><label class="r6">6</label></li>
+							<li><label class="r7">7</label></li>
+							<li><label class="r8">8</label></li>
+							<li><label class="r9">9</label></li>
+						</ul>
+						<?php foreach ($dias as $dia): ?>
+							<ul>
+								<li><b><?php echo ucfirst($dia->glosa) ?></b></li>
+								<?php foreach ($bloques as $bloque): ?>
+									<li>
+										<label class="d<?php echo substr($dia->glosa, 0, 2) ?> r<?php echo $bloque->id ?>">
+											<input type="checkbox" value="<?php echo $dia->id . '_' . $bloque->id ?>" name="<?php echo substr($dia->glosa, 0, 2) . "[{$bloque->id}]" ?>" id="<?php echo substr($dia->glosa, 0, 2) . $bloque->id ?>" />
+											<span><?php echo $bloque->rango ?></span>
+										</label>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						<?php endforeach; ?>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<input type="button" value="cancelar" class="x_form" />
+				<input type="submit" name="submit" value="Enviar" id="enviar" />
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<table class="listado">
+		<thead>
+			<tr>
+				<td style="width: 13px">&nbsp;</td>
+				<td>Curso</td>
+				<td>Profesor Jefe</td>
+				<td>Comentario</td>
+				<td>Estadísticas</td>
+				<td>Opciones</td>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($listado as $curso): ?>
+				<tr>
+					<th>
+						<input type="radio" name="id" data-row='<?php echo json_encode($curso) ?>' value="<?php echo $curso->id ?>" />
+					</th>
+					<td><?php echo $curso->glosa ?></td>
+					<td><?php echo $curso->profesor_jefe ?></td>
+					<td><?php echo $curso->comentario ?></td>
+					<td>
+						<?php
+						$marcar = '';
+						echo Modules::run('horarios/horario/porcentaje', $curso->id) . '% | ';
+						$hc = $this->m_estadisticas->horas_faltantes_curso($curso->id);
+						$hd = $this->m_estadisticas->horas_profesores_disponibles($curso->id);
+						if ($hc > $hd) {
+							$marcar = ' class="rojo"';
+//							msg('Faltan más horas de profesores para generar todos los horarios.', 'msg_error');
+						}
+						?>
+						<span<?php echo $marcar ?>>
+							<?php echo $hc ?>HC |
+							<?php echo $hd ?>HD
+						</span>
+					</td>
+					<td><a href="<?php echo site_url('horarios/horario/del_curso/' . $curso->id) ?>" class="hrr" title="Horario del curso"><span></span></a></td>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+</form>

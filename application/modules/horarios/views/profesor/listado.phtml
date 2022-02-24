@@ -1,0 +1,123 @@
+<form action="<?php echo site_url('horarios/profesor/crud') ?>" id="fcrud" method="post">
+	<div id="herramientas">
+		<button value="Agregar" type="button" id="agregar"><span> Agregar</span></button>
+		<button value="Modificar" type="button" id="modificar"><span> Modificar</span></button>
+		<button value="Eliminar" type="submit" id="eliminar" name="submit"><span> Eliminar</span></button>
+		<span id="ajax-load" class="hidden"><img src="/pub/img/ajax-loader.gif" alt="Cargando" /> cargando...</span>
+	</div>
+	<div class="msg"></div>
+	<div id="crud">
+		<div id="bgt">
+			<a class="x_form" id="x" title="cancelar"><span></span></a>
+			<h3></h3>
+			<div id="crud-form">
+				<h4>Datos del profesor</h4>
+				<div class="sec-form">
+					<label><span>Nombre</span><input type="text" name="nombres" placeholder="Nombres" id="nombres" required="required" min="0" /></label>
+					<label><span>Apellidos</span><input type="text" name="apellidos" placeholder="Apellidos" id="apellidos" required="required" min="0" /></label>
+	<!--        <label><span>Horas Contrato</span><input type="number" name="horas_contrato" placeholder="Horas contrato" id="horas_contrato" required="required" min="0" /></label>
+					<label><span>Horas aula</span><input type="number" name="horas_aula" placeholder="Horas aula" id="horas_aula" required="required" min="0" /></label>
+					<label><span>Horas no lectivas</span><input type="number" name="horas_no_lectivas" placeholder="Horas no lectivas" id="horas_no_lectivas" min="0" /></label>
+					<label><span>Horas permanencia</span><input type="number" name="horas_permanencia" placeholder="Horas permanencia" id="horas_permanencia" min="0" /></label>
+					<label><span>Trabajo técnico</span><input type="number" name="trabajo_tecnico" placeholder="Trabajo técnico" id="trabajo_tecnico" min="0" /></label>-->
+					<label><span>Comentario</span><textarea name="comentario" placeholder="Comentario" id="comentario"></textarea></label>
+				</div>
+				<h4>Disponibilidad Horaria</h4>
+				<div class="sec-form">
+					<div id="disponibilidad">
+						<ul id="bloques-n">
+							<li><b>&nbsp;</b></li>
+							<li><label class="r1">1</label></li>
+							<li><label class="r2">2</label></li>
+							<li><label class="r3">3</label></li>
+							<li><label class="r4">4</label></li>
+							<li><label class="r5">5</label></li>
+							<li><label class="r6">6</label></li>
+							<li><label class="r7">7</label></li>
+							<li><label class="r8">8</label></li>
+							<li><label class="r9">9</label></li>
+						</ul>
+						<?php foreach ($dias as $dia): ?>
+							<ul>
+								<li><b><?php echo ucfirst($dia->glosa) ?></b></li>
+								<?php foreach ($bloques as $bloque): ?>
+									<li>
+										<label class="d<?php echo substr($dia->glosa, 0, 2) ?> r<?php echo $bloque->id ?>">
+											<input type="checkbox" value="<?php echo $dia->id . '_' . $bloque->id ?>" name="<?php echo substr($dia->glosa, 0, 2) . "[{$bloque->id}]" ?>" id="<?php echo substr($dia->glosa, 0, 2) . $bloque->id ?>" />
+											<span><?php echo $bloque->rango ?></span>
+										</label>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						<?php endforeach; ?>
+					</div>
+				</div>
+				<h4>Disponibilidad por especialidad</h4>
+				<div class="sec-form">
+					<div id="disponibilidad_especialidad">
+						<div>
+							<b>Cursos que debe tomar</b>
+							<ul>
+								<?php foreach ($cursos as $curso): ?>
+									<li>
+										<label>
+											<input type="checkbox" value="<?php echo $curso->id ?>" name="id_curso<?php echo "[{$curso->id}]" ?>" id="curso_<?php echo $curso->id ?>" />
+											<span><?php echo $curso->glosa ?></span>
+										</label>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						</div>
+						<div class="clear"></div>
+						<div>
+							<b>Asignaturas que debe dictar</b>
+							<ul>
+								<?php foreach ($asignaturas as $asignatura): ?>
+									<li>
+										<label>
+											<input type="checkbox" value="<?php echo $asignatura->id ?>" name="id_asignatura<?php echo "[{$asignatura->id}]" ?>" id="asignatura_<?php echo $asignatura->id ?>" />
+											<span><?php echo $asignatura->glosa ?></span>
+										</label>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<input type="button" value="cancelar" class="x_form" />
+				<input type="submit" name="submit" value="Enviar" id="enviar" />
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<table class="listado">
+		<thead>
+			<tr>
+				<td style="width: 13px">&nbsp;</td>
+				<td style="width: 150px">Nombres</td>
+				<td>Cursos</td>
+				<td>Asignaturas</td>
+				<td>Comentario</td>
+				<td>Opciones</td>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($listado as $profesor): ?>
+				<tr>
+					<th>
+						<input type="radio" name="id" data-row='<?php echo json_encode($profesor) ?>'
+									 value="<?php echo $profesor->id ?>" />
+					</th>
+					<td><?php echo $profesor->nombre_profesor ?></td>
+					<td><?php echo $m_profesor->cursos($profesor->id) ?></td>
+					<td><?php echo $m_profesor->asignaturas_txt($profesor->id) ?></td>
+					<td><?php echo ($profesor->comentario) ?></td>
+					<td data-profesor="<?php echo $profesor->id ?>">
+						<a href="<?php echo site_url('horarios/profesor/horario/' . $profesor->id) ?>" title="Horario del profesor" class="hrr"><span></span></a>
+					</td>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+</form>

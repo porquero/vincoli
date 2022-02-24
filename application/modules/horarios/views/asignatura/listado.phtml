@@ -1,0 +1,42 @@
+<form action="<?php echo site_url('horarios/asignatura/crud') ?>" id="fcrud" method="post">
+	<div id="herramientas">
+		<button value="Agregar" type="button" id="agregar"><span> Agregar</span></button>
+		<button value="Modificar" type="button" id="modificar"><span> Modificar</span></button>
+		<button value="Eliminar" type="submit" id="eliminar" name="submit"><span> Eliminar</span></button>
+		<span id="ajax-load" class="hidden"><img src="/pub/img/ajax-loader.gif" alt="Cargando" /> cargando...</span>
+	</div>
+	<div class="msg"></div>
+	<div id="crud">
+		<div id="bgt">
+			<a class="x_form" id="x" title="cancelar"><span></span></a>
+			<h3></h3>
+			<div id="crud-form">
+				<h4>Datos de la asignatura</h4>
+				<label><span>Asignatura</span><input type="text" name="glosa" placeholder="Asignatura" id="glosa" required="required" /></label>
+				<div class="clear"></div>
+				<input type="button" value="cancelar" class="x_form" />
+				<input type="submit" name="submit" value="Enviar" id="enviar" />
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<table class="listado">
+		<thead>
+			<tr>
+				<td style="width: 13px">&nbsp;</td>
+				<td>Asignatura</td>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($listado as $asignatura): ?>
+				<tr>
+					<th>
+						<input type="radio" name="id" data-row='<?php echo json_encode($asignatura) ?>'
+									 value="<?php echo $asignatura->id ?>" />
+					</th>
+					<td><?php echo $asignatura->glosa ?></td>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+</form>

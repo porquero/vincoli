@@ -1,0 +1,343 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Righteous);
+body{
+	font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+	cursor: default;
+	background: #595959;
+	font-size: 13px;
+	line-height: 1.6;
+	overflow-x: hidden
+}
+input[type=button], input[type=submit], select, button{
+	background: #ddd;
+	border: #adadad 1px solid;
+	color: #333;
+	padding: 6px 12px
+}
+input[type=button]:hover, input[type=submit]:hover, button:hover{
+	background: #adadad;
+	cursor: pointer;
+}
+input[type=text], input[type=number], textarea{
+	border: 1px solid #ccc;
+	padding: 6px
+}
+h1{
+	font-family: 'Righteous', cursive;
+	font-weight: normal;
+	font-size: 123.1%
+}
+h1 a{
+	text-decoration: none;
+	color: #fff
+}
+h2{
+	background: #F0F0F0;
+	padding: 28px 7px 28px 28px;
+	color: #555;
+}
+h4, #herramientas{
+	background: #F9F9F9;
+	border-bottom: 1px solid #e5e5e5;
+	border-top: 1px solid #e5e5e5;
+	padding: 1% 0 1% 2%;
+	margin-bottom: 14px;
+	color: #009FBC;
+	clear: both;
+	z-index: 1
+
+}
+.container{
+	margin: auto;
+	background: #353535;
+	width: 100%;
+	text-align: left;
+}
+#logo_colegio{
+	margin-left: 14px
+}
+#logo_app{
+	float: right !important;
+	margin: 0 14px 0 0;
+	letter-spacing: .06em
+}
+#menu{
+	background: #595959;
+	padding-top: 28px
+}
+#menu ul{
+	padding: .5%;
+	width: 99%;
+	position: relative;
+}
+#menu b a{
+	cursor: default
+}
+#menu ul ul a{
+	margin-left: 14px
+}
+#menu a{
+	padding: 7px 2%;
+	color: #fff;
+	text-decoration: none;
+	width: 96%;
+	display: block;
+	font-size: 93%
+}
+#menu a:hover{
+	background: #696969;
+	color: #eee
+}
+#generar_horario{
+}
+#generar_horario a{
+	border: none;
+}
+#generar_horario input{
+}
+label{
+	display: block
+}
+.sidebar{
+	float: left;
+	width: 16%;
+	padding-top: 87px;
+	position: relative;
+	background: #353535;
+}
+.listado{
+	width: 96%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: auto;
+	border: #009FBC 1px solid;
+	color: #333
+}
+a{
+	color: #009FBC;
+	text-decoration: none;
+	letter-spacing: 0.03em;
+}
+.horario a{
+	font-size: 85%
+}
+a:hover, a:focus{
+	color: #C0392B;
+	text-decoration: underline
+}
+.listado td, .listado th{
+	padding: 7px;
+}
+.listado td{
+	border-top: 1px solid #ddd
+}
+.listado th{
+	background: #eee
+}
+.listado thead{
+	background: #009FBC;
+	color: #fff
+}
+.listado tbody tr:hover{
+	background-color:#f5f5f5;
+	cursor: pointer
+}
+#herramientas{
+	width: 98%
+}
+#crud{
+	display: none;
+	background: #fff;
+	z-index: 2;
+	position: relative;
+	padding-bottom: 7px;
+	color: #333
+}
+#bgt{
+	background: #F9F9F9;
+	margin: auto;
+	position: relative;
+	width: 90%;
+}
+#crud label span{
+	display: block;
+}
+#crud input[type=submit]{
+	float: right;
+	color: #fff;
+	text-shadow: none;
+	background: #B1CC16
+}
+#crud input[type=submit]{
+	background: #b1cc16;
+	border: 1px solid #94ab13
+}
+#crud input[type=submit]:hover{
+	background: #94ab13
+}
+#crud h4{
+	clear: both;
+	border-top: none
+}
+#x{
+	color: #fff;
+	position: absolute;
+	right: 0;
+	cursor: pointer;
+	padding: 2px;
+	border: 0;
+	min-width: 24px;
+	height: 26px;
+	text-align: center;
+	font-size: 161.6%;
+	opacity:0.9;
+	filter:alpha(opacity=90);
+}
+#crud h3{
+	font-size: 123.1%;
+	background: #009FBC;
+	color: #fff;
+	padding: 3px 7px
+}
+#crud label{
+	float: left;
+	width: 49%;
+	margin: 7px 0
+}
+#crud input, #crud select, #crud textarea{
+	width: 60%;
+}
+#crud input[type=submit], #crud input[type=button]{
+	width: auto
+}
+#crud a.x_form:hover{
+	text-decoration: none;
+	color: #333
+}
+#crud a.x_form span:before{
+	content: "\f05c"
+}
+#crud-form{
+	padding: 11px;
+	border: 1px solid #009FBC
+}
+#crud-form h4{
+	padding: 7px 0 4px 0
+}
+#crud-form .clear{
+	margin-bottom: 14px
+}
+#view{
+	margin: auto;
+	float: left;
+	width: 84%;
+	position: relative;
+	background: #fff;
+	min-height: 600px
+}
+.footer{
+	text-align: center;
+	margin-top: 21px;
+	font-size: 85%;
+	background: #F1F1F1;
+	padding: 14px
+}
+.sec-form{
+	margin: 7px 0 14px 14px;
+	float: left;
+	width: 100%
+}
+li.hdia{
+	height: 30px !important;
+	padding: 0 !important
+}
+#corporativo{
+	background: #009FBC;
+	float: left;
+	width: 100%;
+	padding: 7px 0;
+	border-bottom: 1px solid #333
+}
+#empresa{
+	position: absolute;
+	top: 17px;
+}
+#empresa *{
+	float: left
+}
+#empresa p{
+	color: #fff;
+	margin: 7px;
+	width: 150px
+}
+#msg{
+	text-align: center;
+	padding: 14px 0;
+	display: none;
+	max-height: 200px;
+	overflow-y: auto
+}
+.msg_ok{
+	background: #e6fcb1;
+	color: #598000;
+	display: block !important;
+}
+.msg_error{
+	background: #FCB1B1;
+	color: maroon;
+	display: block !important;
+}
+#disponibilidad input[type=checkbox]{
+	width: auto;
+	margin-right: 4px;
+}
+#disponibilidad ul{
+	float: left;
+	width: 14%;
+	text-align: center
+}
+#disponibilidad li{
+	text-align: left;
+}
+#disponibilidad li b{
+}
+#disponibilidad li label{
+	width: 100%
+}
+#disponibilidad li span{
+	display: inline
+}
+#bloques-n{
+	width: 30px !important
+}
+.hidden{
+	visibility: hidden
+}
+#ajax-load{
+	color: #333
+}
+.rojo{
+	color: red
+}
+*:before{
+	font-family: FontAwesome;
+}
+.hrr{
+	color: #D9534F
+}
+.hrr span:before{
+	content: "\f0ce";
+	font-size: 174%
+}
+#modificar span:before{
+	content: "\f044"
+}
+#eliminar span:before{
+	content: "\f014"
+}
+#agregar span:before{
+	content: "\f15b"
+}
+#editar_horario span:before{
+	content: "\f00a"
+}

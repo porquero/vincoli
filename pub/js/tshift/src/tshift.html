@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>tShift Demo</title>
+		<meta name="description" content="tejemplo de Shift. Permite utilizar la tecla shift para seleccionar varios checkboxes." />
+		<meta name="author" content="Alfredo Berumen Saldivar" />
+		<meta name="keywords" content="PHP,HTML,CSS,XML,Jquery" />
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+		<script src="jquery.tshift.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		$(function() {
+       		$('#one').tshift();
+        	$('#two').tshift();
+		});
+		</script>
+		<style>
+div {
+	float: left;
+    width: 50%;
+}
+</style>
+
+	</head>
+	<body>
+		<div id="one">
+			<fieldset>
+			    <legend>Select</legend>
+			    <input type="checkbox" name="number[]" value="1" />1<br />
+			    <input type="checkbox" name="number[]" value="2" />2<br />
+			    <input type="checkbox" name="number[]" value="3" />3<br />
+			    <input type="checkbox" name="number[]" value="4" />4<br />
+			    <input type="checkbox" name="number[]" value="5" />5<br />
+			    <input type="checkbox" name="number[]" value="6" />6<br />
+			    <input type="checkbox" name="number[]" value="7" />7<br />
+			    <input type="checkbox" name="number[]" value="8" />8<br />
+			    <input type="checkbox" name="number[]" value="9" />9<br />
+			    <input type="checkbox" name="number[]" value="10" />10<br />
+	    	</fieldset>		
+	    </div>
+		<div id="two">
+			<fieldset>
+			    <legend>Select 2</legend>
+			    <div id="a">
+			    	<input type="checkbox" name="number[]" value="1" />1
+			    </div>
+			    <div id="b">
+				    <input type="checkbox" name="number[]" value="2" />2<br />
+			    </div>
+			    <div id="c">
+				    <input type="checkbox" name="number[]" value="3" />3<br />
+			    </div>
+			    <div id="d">
+				    <input type="checkbox" name="number[]" value="4" />4<br />
+			    </div>
+			    <div id="e">
+				    <input type="checkbox" name="number[]" value="5" />5<br />
+			    </div>
+			    <div id="f">
+				    <input type="checkbox" name="number[]" value="6" />6<br />
+				</div>
+		    </fieldset>
+	    </div>
+	</body>
+</html>
