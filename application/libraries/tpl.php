@@ -83,7 +83,7 @@ class tpl {
 			return $this->_section[$name];
 		} else {
 			if (array_key_exists($name, $this->_section) === false || $replace_all === true) {
-				$this->_section[$name] = '';
+				$this->_section[$name] = [];
 			}
 			$this->_section[$name][] = strstr($view, '/') ? $view : $CI->router->fetch_class() . '/' . $view;
 		}
