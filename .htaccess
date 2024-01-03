@@ -1,5 +1,1 @@
 AddDefaultCharset utf-8
-AuthType Basic
-AuthName "demo"
-AuthUserFile "/home/vincoli/.htpasswds/public_html/demo/passwd"
-require valid-user
