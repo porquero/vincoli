@@ -53,9 +53,9 @@ $active_record = TRUE;
 
 // Producción
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'pproyect_vincoli';
-$db['default']['password'] = '(k]}6ff.06}~';
-$db['default']['database'] = 'pproyect_vincoli';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
+$db['default']['database'] = 'vincoli';
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
