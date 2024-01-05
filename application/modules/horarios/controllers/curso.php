@@ -35,7 +35,7 @@ class curso extends MX_Controller {
 					'bloques' => $this->m_bloque->fetch(),
 					// @TODO: Estos datos deben sacarse de la bd.
 					'nombre_dias' => array('lunes', 'martes', 'miércoles', 'jueves', 'viernes'),
-					'numero_bloques' => range(1, 9),
+					'numero_bloques' => range(1, 12),
 					'dias' => $this->m_dia->fetch(),
 					'footer' => js_tag('pub/' . _TEMPLATE_NAME . '/js/crud_grid.js') .
 					js_tag('pub/' . _TEMPLATE_NAME . '/js/curso.js'),
@@ -76,7 +76,7 @@ class curso extends MX_Controller {
 			array(
 				// @TODO: Estos datos deben sacarse de la bd.
 				'nombre_dias' => array(1 => 'lunes', 2 => 'martes', 3 => 'miércoles', 4 => 'jueves', 5 => 'viernes'),
-				'numero_bloques' => range(1, 9),
+				'numero_bloques' => range(1, 12),
 				'head' => link_tag('css/curso_editar_horario.css'),
 				'footer' => js_tag('js/curso_editar_horario.js'),
 				'id_curso' => $id_curso,
@@ -261,10 +261,11 @@ class curso extends MX_Controller {
 		foreach ($dias as $dia) {
 			if (is_array($this->input->post($dia))) {
 				foreach ((array) $this->input->post($dia) as $dia_bloque) {
+					$diaBloque = explode('_', $dia_bloque);
 					$data_disponibilidad[] = array(
 							'id_curso' => $id_curso,
-							'id_dia' => $dia_bloque[0],
-							'id_bloque' => $dia_bloque[2]
+							'id_dia' => $diaBloque[0],
+							'id_bloque' => $diaBloque[1]
 					);
 				}
 			}
@@ -296,8 +297,7 @@ class curso extends MX_Controller {
 	public function bloques_disponibles($id_curso)
 	{
 		$this->load->model('m_curso');
-		Plogger::var_dump($this->m_curso->bloques_disponibles($id_curso)
-		);
+		//Plogger::var_dump($this->m_curso->bloques_disponibles($id_curso));
 	}
 
 	/**
