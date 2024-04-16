@@ -64,3 +64,11 @@ Trabaja según la disponibilidad del Profesor.
 * Al definir el Plan de Estudio puedes fijar el profesor que dictará la asignatura, si lo deseas.
 * Bloques del curso
 * Puedes fijar los bloques por cada curso.
+
+# Instalación
+* En la raíz crear el archivo: .env con lo siguiente:
+```
+CI_ENVIRONMENT = development
+```
+* Luego modificar el archivo de configuración para usar la base de datos: /application/config/development/database.php
+* Cargar los datos de prueba utilizando el archivo: vincoli.sql
